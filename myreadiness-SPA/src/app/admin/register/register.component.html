@@ -1,0 +1,118 @@
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/']">Home</a>
+          </li>
+          <li class="breadcrumb-item active">Register</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="register-box">
+      <!-- <div class="register-logo">
+        <a href="#">HRMS</a>
+      </div> -->
+      <div class="card card-primary card-outline">
+        <div class="card-body register-card-body">
+          <p class="login-box-msg">Register a new membership</p>
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+            <div class="mb-3">
+              <select class="custom-select d-block w-100" [(ngModel)]="selectedValue" formControlName="empid"
+                placeholder="Choose Employee" required>
+                <option [ngValue]="null">Choose Employee</option>
+                <option [value]="employee.id" *ngFor="let employee of employees">
+                  {{employee.empName}}
+                </option>
+              </select>
+
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" [ngClass]="{'is-invalid': registerForm.get('username').errors
+        && registerForm.get('username').touched}" class="form-control is-invalid" formControlName="username"
+                placeholder="Username">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
+              <div class="invalid-feedback">Please choose a username</div>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" [ngClass]="{'is-invalid': registerForm.get('email').errors
+            && registerForm.get('email').touched}" class="form-control" formControlName="email" placeholder="Email">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+              <div class="invalid-feedback" *ngIf="registerForm.get('email').hasError('required')
+              && registerForm.get('email').touched">
+                Email is required
+              </div>
+              <div class="invalid-feedback" *ngIf="registerForm.get('email').hasError('email')">
+                Email must be a valid email address
+              </div>
+
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" [ngClass]="{'is-invalid': registerForm.get('password').errors
+              && registerForm.get('password').touched}" class="form-control" formControlName="password"
+                placeholder="Password">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+              <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('required')
+                && registerForm.get('password').touched">
+                Password is required
+              </div>
+              <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('minlength')
+                && registerForm.get('password').touched">
+                Password must be at least 4 characters
+              </div>
+              <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('maxlength')
+                && registerForm.get('password').touched">
+                Password cannot exceed 8 characters
+              </div>
+
+            </div>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" placeholder="Retype password" [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors
+              && registerForm.get('confirmPassword').touched
+              || registerForm.get('confirmPassword').touched
+              && registerForm.hasError('mismatch')}" class="form-control" formControlName="confirmPassword">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+              <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required')
+                && registerForm.get('confirmPassword').touched">
+                Password is required
+              </div>
+              <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch')
+              && registerForm.get('confirmPassword').touched">
+                Passwords must match
+              </div>
+
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-block btn-flat"
+                [disabled]="!registerForm.valid">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

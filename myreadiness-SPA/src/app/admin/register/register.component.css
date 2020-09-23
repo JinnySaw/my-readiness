@@ -1,0 +1,14 @@
+/* .mat-form-field {
+  font-size: 16px;
+  width: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  max-width: 35rem;
+  margin: 0 auto;
+} */
+.main-sidebar {
+  height: 100vh;
+  overflow: scroll;
+}
